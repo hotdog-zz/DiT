@@ -113,7 +113,7 @@ def main(args):
         # Setup classifier-free guidance:
         if using_cfg:
             z = torch.cat([z, z], 0)
-            y_null = torch.tensor([1000] * n, device=device)
+            y_null = torch.tensor([4] * n, device=device)
             y = torch.cat([y, y_null], 0)
             model_kwargs = dict(y=y, cfg_scale=args.cfg_scale)
             sample_fn = model.forward_with_cfg
@@ -154,7 +154,7 @@ if __name__ == "__main__":
     parser.add_argument("--per-proc-batch-size", type=int, default=32)
     parser.add_argument("--num-fid-samples", type=int, default=50_000)
     parser.add_argument("--image-size", type=int, choices=[256, 512], default=256)
-    parser.add_argument("--num-classes", type=int, default=1000)
+    parser.add_argument("--num-classes", type=int, default=4)
     parser.add_argument("--cfg-scale",  type=float, default=1.5)
     parser.add_argument("--num-sampling-steps", type=int, default=250)
     parser.add_argument("--global-seed", type=int, default=0)
