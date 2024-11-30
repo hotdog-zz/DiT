@@ -185,7 +185,7 @@ def main(args):
         for x, y in loader:
             x = x.to(device)
             y = y.to(device)
-            a = x[:,:,:,1].max()
+            a = x[:,:,10,:].max()
             if a > 0.2:
                 pdb.set_trace()
 
