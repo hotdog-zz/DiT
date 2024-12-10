@@ -206,6 +206,7 @@ def main(args):
         sampler.set_epoch(epoch)
         logger.info(f"Beginning epoch {epoch}...")
         for x, y in loader:
+            y = torch.zeros_like(y)
             x = x.to(device)
             y = y.to(device)
             with torch.no_grad():
@@ -277,7 +278,7 @@ if __name__ == "__main__":
     parser.add_argument("--results-dir", type=str, default="results")
     parser.add_argument("--model", type=str, choices=list(DiT_models.keys()), default="DiT-XL/2")
     parser.add_argument("--image-size", type=int, choices=[256, 512], default=256)
-    parser.add_argument("--num-classes", type=int, default=4)
+    parser.add_argument("--num-classes", type=int, default=1)
     parser.add_argument("--epochs", type=int, default=400)
     parser.add_argument("--global-batch-size", type=int, default=256)
     parser.add_argument("--global-seed", type=int, default=0)
